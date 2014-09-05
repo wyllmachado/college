@@ -27,7 +27,7 @@ public class ex4 {
 			smaler = i;
 			
 			for(j=i+1; j<arrayQtd; j++){
-				if(myArray[j ]< myArray[smaler]) smaler = j;
+				if(myArray[j ] < myArray[smaler]) smaler = j;
 			}
 			
 			
