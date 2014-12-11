@@ -1,0 +1,25 @@
+{
+    "name": "connectionhere",
+    "title": "ConnectionHere",
+    "domain": "http://www.robsonjunior.cc/connectionhere",
+    "subtitle": "Orgulhosamente criado com Harmonic",
+    "author": "Robson Junior",
+    "description": "Artigos e posts sobre Redes no mundo da tecnologia da informação.",
+    "bio": "Thats me",
+    "template": "default",
+    "preprocessor": "less",
+    "posts_permalink": ":language/:year/:month/:title",
+    "pages_permalink": "pages/:title",
+    "header_tokens": [
+        "<!--",
+        "-->"
+    ],
+    "index_posts": 10,
+    "i18n": {
+        "default": "en",
+        "languages": [
+            "en",
+            "pt-br"
+        ]
+    }
+}
