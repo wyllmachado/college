@@ -8,7 +8,7 @@
 * __skill:__ Javascript
 * __company:__ FrontEndDeveloper['Terra Networks S/A']
 * __age:__ 22
-* __github/tweeter:__ robsongajunior
+* __github/twitter:__ robsongajunior
 
 -----------------------------------
 
