@@ -115,16 +115,12 @@ Reflows são os mais custosos, causados quando as mudanças alterando o layout d
 como por exemplo alterar o width de um elemento.
 
 `
-    // muito ruim
-
     for (var i = 0; i &lt; 100; i++) {
       document.getElementById("myList").innerHTML += "&lt;span&gt;" + i + "&lt;/span&gt;";
     }
 `
 
 `
-    // bem melhor :)
-
     var myList = "";
 
     for (var i = 0; i &lt; 100; i++) {
@@ -136,8 +132,6 @@ como por exemplo alterar o width de um elemento.
 `
 
 `
-    // bem bem melhor *--*
-
     var myListHTML = document.getElementById("myList").innerHTML;
 
     for (var i = 0; i &lt; 100; i++) {
