@@ -1,4 +1,4 @@
-# Render-tree construction, Layout, and Paint
+# Renderizando uma webpage - Render/Repaint/Reflow/DOMTREE
 
 ## Apresentação
 
