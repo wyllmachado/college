@@ -114,7 +114,7 @@ __background-color__
 Reflows são os mais custosos, causados quando as mudanças alterando o layout da página,
 como por exemplo alterar o width de um elemento.
 
-`javascript
+`
     // muito ruim
 
     for (var i = 0; i &lt; 100; i++) {
@@ -122,7 +122,7 @@ como por exemplo alterar o width de um elemento.
     }
 `
 
-`javascript
+`
     // bem melhor :)
 
     var myList = "";
@@ -135,7 +135,7 @@ como por exemplo alterar o width de um elemento.
   </code>
 `
 
-`javascript
+`
     // bem bem melhor *--*
 
     var myListHTML = document.getElementById("myList").innerHTML;
@@ -152,9 +152,9 @@ como por exemplo alterar o width de um elemento.
 
 
 ## SAMPLES
-[REPAINT](samples/repaint.html)
-[REFLOW](samples/reflow-1.html)
-[REPAINT/REFLOW](samples/repaint-reflow.html)
+* [REPAINT](samples/repaint.html)
+* [REFLOW](samples/reflow-1.html)
+* [REPAINT/REFLOW](samples/repaint-reflow.html)
 
 
 ## References
