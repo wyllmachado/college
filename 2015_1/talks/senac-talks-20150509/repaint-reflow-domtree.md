@@ -114,33 +114,28 @@ __background-color__
 Reflows são os mais custosos, causados quando as mudanças alterando o layout da página,
 como por exemplo alterar o width de um elemento.
 
-`
+` 
 
     for (var i = 0; i &lt; 100; i++) {
-      
       document.getElementById("myList").innerHTML += "&lt;span&gt;" + i + "&lt;/span&gt;";
-    
     }
-    
 `
 
-`
+` 
 
     var myList = "";
     for (var i = 0; i &lt; 100; i++) {
       myList += "&lt;span&gt;" + i + "&lt;/span&gt;";
     }
     document.getElementById("myList").innerHTML = myList;
-  </code>
-  
 `
 
-`
+` 
+
     var myListHTML = document.getElementById("myList").innerHTML;
     for (var i = 0; i &lt; 100; i++) {
       myListHTML += "&lt;span&gt;" + i + "&lt;/span&gt;";
     }
-    
 `
 [Resultados JSPerf](http://jsperf.com/browser-diet-dom-manipulation/11)
 
