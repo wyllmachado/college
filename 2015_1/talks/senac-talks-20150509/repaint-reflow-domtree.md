@@ -152,12 +152,12 @@ como por exemplo alterar o width de um elemento.
 
 
 ## Tools
-* Navigation Timing - Javascript
+* [Paint_Flashing_Tool](https://developer.mozilla.org/pt-BR/docs/Tools/Paint_Flashing_Tool)
 
 
 ## SAMPLES
 * [REPAINT](samples/repaint.html)
-* [REFLOW](samples/reflow-1.html)
+* * [REFLOW](samples/reflow-1.html)
 * [REPAINT/REFLOW](samples/repaint-reflow.html)
 
 
