@@ -2,10 +2,6 @@
 
 O DeamonFW tem como objetivo aumentar o tempo sobre as 8h diárias de trabalho, esse projeto usará diversas tecnologias otimizando rotinas operacionais do dia a dia.
 
-// delete //
-No dia a dia de uma empresa e tecnologia ao longo dos anos vamos criando rotinas e burocracias que hoje pode nos tomar um tempo bem longo, um exemplo poderia ser um processo de deploy, onde teremos rotinas como: validação, teste, versionamento entre outros processos.
-// end delete //
-
 ## Público alvo
 Empresas tecnológicas de grande e médio porte com quadro muito grande de funcionários operacionais atuando na área de desenvolvimento/suporte.
 
