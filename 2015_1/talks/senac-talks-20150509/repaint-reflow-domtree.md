@@ -1,4 +1,4 @@
-# Renderizando uma webpage - Render/Repaint/Reflow/DOMTREE
+# Renderização - Render/Repaint/Reflow/DOMTREE
 
 ## Apresentação
 
