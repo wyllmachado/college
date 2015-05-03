@@ -107,7 +107,17 @@ display: none; !== visibility: hidden;
 ## Repaint
 Repaints são disparados quando a aparência de um elemento é alterada sem alterar seu layout.
 
-__background-color__
+`
+
+    function repaint () {
+    	var colors = ['purple', 'black', 'blue', 'red', 'green', 'brown', 'white', 'gray'],
+    		color  = colors[parseInt(Math.random() * colors.length)];
+    		
+    	document.body.style.backgroundColor = color;
+    };
+    document.getElementById('repaintBTN').addEventListener('click', repaint);
+
+`
 
 
 ## Reflow
