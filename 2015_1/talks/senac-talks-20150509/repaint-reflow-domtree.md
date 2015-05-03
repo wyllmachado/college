@@ -31,19 +31,20 @@ __PS:__ Dar alguns exemplos como, quando queremos mostrar uma imagem/paragrafo/c
 Cascading Style Sheets ou apenas CSS, é uma linguagem de folha de estilo, é o responsável por hoje nós termos uma página
 bonita, cheio de cores/animações etc...
 
-`css
-body {
-    background-color: #dedede;
-}
+`
 
-.wrap-content {
-    width: 75%;
-    height: 50%;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 4px;
-    border: solid 1px rgba(0,0,0,0.2);
-}
+    body {
+        background-color: #dedede;
+    }
+    .wrap-content {
+        width: 75%;
+        height: 50%;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 4px;
+        border: solid 1px rgba(0,0,0,0.2);
+    }
+
 `
 
 __CRIAR PAGINA BONITONA__
