@@ -86,6 +86,8 @@ das regras para as media queries, seletores e também o próprio css.
 
 ![CSSOM - Contrução](images/cssom-construction.png)
 
+Como podem ver, ele também passa pelos mesmo processos da criação do DOM, só que por sua vez tornando-se CSSOM.
+
 ![CSSOM - Tree](images/cssom-tree.png)
 
 ### Algumas observações
@@ -176,9 +178,9 @@ como por exemplo alterar o width de um elemento.
 ## References
 * http://www.w3.org/TR/DOM-Level-2-Core/introduction.html
 * https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model?hl=en
+* https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model?hl=pt-br#css-object-model-cssom
 * http://dev.w3.org/csswg/cssom/
 * https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
-* https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model?hl=pt-br#css-object-model-cssom
 * http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
 * https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp?hl=en
 * https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp?hl=en
