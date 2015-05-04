@@ -65,7 +65,7 @@ Document Object Model
 
 #### O que o DOM não é?
 
-![dom-full-process](dom-full-process.png)
+![dom-full-process](images/dom-full-process.png)
 
 * Não é um documento de especificação binária.
 * Não é para setar uma estrutura de dados
