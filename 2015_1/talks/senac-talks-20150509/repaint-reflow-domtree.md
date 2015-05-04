@@ -3,11 +3,11 @@
 
 -----------------------------------
 
-* __name:__ Robson Júnior
-* __skill:__ JavaScript
-* __company:__ FrontEndDeveloper['Terra Networks S/A']
-* __age:__ 22
-* __github/twitter:__ robsongajunior
+* __Nome:__ Robson Júnior
+* __Idade:__ 22
+* __Bio:__ Estudante de Análise e Desenvolvimento de Sistemas no SenacRS. Membro da Organização JSROCKS, Front-End Developer na empresa Terra Networks S/A. Apaixonado por Open Source e atualmente reside na imensidão da Weblândia.
+* __GitHub:__ https://github.com/robsongajunior
+* __Twitter:__ https://twitter.com/robsongajunior
 
 -----------------------------------
 
