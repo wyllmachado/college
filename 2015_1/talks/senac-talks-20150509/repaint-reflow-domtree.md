@@ -23,6 +23,8 @@ HyperText Markup Language (Linguagem de Marcação de Hipertexto)
 
 HTML é nada mais nada menos que um arquivo de texto que possui uma síntaxe que usa __tags__ para que o browser saiba o que e como interpretar essas palavras.
 
+
+#### Examplos
 * __Parágrafo:__ p
 * __Imagem:__ img
 * __Link:__ a
