@@ -57,8 +57,8 @@ __CRIAR PAGINA BONITONA__
 
 ##DOM/CSSOM
 
-### DOM
-Document Object Model
+### DOM (Document Object Model)
+DOM nada mais nada menos é do que o HTML parseado, mas antes o browser teve um trabalho todo para chegar nesse resultado.
 
 ![dom-full-process](images/dom-full-process.png)
 
@@ -67,24 +67,22 @@ Document Object Model
 * Lexicalização
 * Criação do DOM
 
+
 #### O que o DOM não é?
-
-* Não é um documento de especificação binária.
-* Não é para setar uma estrutura de dados
-* O Document Object Model não define quais as informações em um documento é relevante ou como informações em um documento está estruturado. Para XML, este é especificado pelo W3C XML Information Set [Infoset]. 
-
-![DOM - Table](images/dom-tree.png)
+* Não é um documento de especificação binária;
+* Não é para setar uma estrutura de dados;
+* Não define quais as informações em um documento é relevante ou como informações em um documento está estruturado.
 
 #### O que o DOM realmente é?
 * Uma forma para que todas plafaformas conseguem entender a informação
 * Responsável por especificar a interface
 * O DOM é simplesmente uma API para este conjunto de informações.
 
+![DOM - Table](images/dom-tree.png)
+
 
 ### CSSOM
-CSS Object Model provém APIS que permite consultar e manipular estilos e entender os estilos
-que são processados equanto a página é renderizada. Responsável também pelos parses genéricos e serialização
-das regras para as media queries, seletores e também o próprio css.
+CSS Object Model provém APIS que permite consultar e manipular estilos. Responsável também pelos parses genéricos e serialização das regras para as media queries, seletores e também o próprio css.
 
 ![CSSOM - Contrução](images/cssom-construction.png)
 
