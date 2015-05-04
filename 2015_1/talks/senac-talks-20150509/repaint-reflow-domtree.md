@@ -100,12 +100,6 @@ Como podem ver, ele também passa pelos mesmo processos da criação do DOM, só
 
 ![RENDER TREE](images/render-tree-construction.png)
 
-### Passos
-* A árvore do DOM e do CSSOM se combinam para formar a árvore de renderização.
-* A árvore de renderização contém apenas os nós necessários para renderizar a página.
-* O layout computa a posição e o tamanho exatos de cada objeto.
-* A pintura é a última etapa, que capta a árvore de renderização final e renderiza os pixels na tela.
-
 ### Construindo árvore de renderização
 * Iniciando na raiz do DOM, analiza todos nodos visíveis
     - nós invisíveis
@@ -113,9 +107,15 @@ Como podem ver, ele também passa pelos mesmo processos da criação do DOM, só
 * Encontra no CSSOM a regra de cada nodo visível
 * Devolve nodos visíveis com seus estilos computados
 
-display: none; !== visibility: hidden;
+__display: none !== visibility: hidden__
 
 ![Position relative to absolute](images/layout-viewport.png)
+
+### Recaptulando os passos
+* A árvore do DOM e do CSSOM se combinam para formar a árvore de renderização.
+* A árvore de renderização contém apenas os nós necessários para renderizar a página.
+* O layout computa a posição e o tamanho exatos de cada objeto.
+* A pintura é a última etapa, que capta a árvore de renderização final e renderiza os pixels na tela.
 
 
 ## Repaint
@@ -137,6 +137,9 @@ Repaints são disparados quando a aparência de um elemento é alterada sem alte
 ## Reflow
 Reflows são os mais custosos, causados quando as mudanças alterando o layout da página,
 como por exemplo alterar o width de um elemento.
+
+__Exemplo__
+Esses três exemplos abordam um pouco de performance, apenas para dar uma idéia.
 
 `
 
@@ -165,7 +168,8 @@ como por exemplo alterar o width de um elemento.
 
 
 ## Tools
-* [Paint_Flashing_Tool](https://developer.mozilla.org/pt-BR/docs/Tools/Paint_Flashing_Tool)
+* [Firefox = Paint Flashing Tool](https://developer.mozilla.org/pt-BR/docs/Tools/Paint_Flashing_Tool)
+* [Chrome = DevTools - Timeline](https://developer.chrome.com/devtools/docs/timeline)
 
 
 ## SAMPLES
