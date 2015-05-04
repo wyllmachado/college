@@ -5,7 +5,7 @@
 -----------------------------------
 
 * __name:__ Robson Júnior
-* __skill:__ Javascript
+* __skill:__ JavaScript
 * __company:__ FrontEndDeveloper['Terra Networks S/A']
 * __age:__ 22
 * __github/twitter:__ robsongajunior
@@ -51,26 +51,36 @@ __CRIAR PAGINA BONITONA__
 ![Página Bonitona](images/pretty-page.jpg)
 
 
-## DOM
+##DOM/CSSOM
+
+### DOM
 Document Object Model
 
 ![DOM - Table](images/table.gif)
 
-### O que o DOM não é?
+* Conversão
+* Criação de tokens
+* Lexicalização
+* Criação do DOM
+
+#### O que o DOM não é?
+
+![dom-full-process](dom-full-process.png)
+
 * Não é um documento de especificação binária.
 * Não é para setar uma estrutura de dados
 * O Document Object Model não define quais as informações em um documento é relevante ou como informações em um documento está estruturado. Para XML, este é especificado pelo W3C XML Information Set [Infoset]. 
 
 ![DOM - Table](images/dom-tree.png)
 
-### O que o DOM realmente é?
+#### O que o DOM realmente é?
 * Uma forma para que todas plafaformas conseguem entender a informação
 * Responsável por especificar a interface
 * O DOM é simplesmente uma API para este conjunto de informações.
 
 
-## CSSOM
-CSS Object Model provém APIS que permite consultar e manipular estilos e entender os stylesheets inline
+### CSSOM
+CSS Object Model provém APIS que permite consultar e manipular estilos e entender os estilos
 que são processados equanto a página é renderizada. Responsável também pelos parses genéricos e serialização
 das regras para as media queries, seletores e também o próprio css.
 
@@ -78,9 +88,11 @@ das regras para as media queries, seletores e também o próprio css.
 
 ![CSSOM - Tree](images/cssom-tree.png)
 
-Mas quanto tempo levou isso tudo?
-
-__Exemplo de quanto tempo leva o processament do CSS
+### Algumas observações
+ * Bytes → caracteres → tokens → nós → modelo de objeto.
+ * A marcação HTML é transformada em DOM, a marcação CSS é transformada em CSSOM
+ * DOM e CSSOM são estruturas de dados independentes.
+ * O Chrome DevTools Timeline possibilita capturar e inspecionar os custos de criação e processamento de DOM e CSSOM.
 
 
 ## Renderizando uma webpage - DOM TREE
@@ -113,7 +125,7 @@ Repaints são disparados quando a aparência de um elemento é alterada sem alte
     function repaint () {
     	var colors = ['purple', 'black', 'blue', 'red', 'green', 'brown', 'white', 'gray'],
     		color  = colors[parseInt(Math.random() * colors.length)];
-    		
+
     	document.body.style.backgroundColor = color;
     };
     document.getElementById('repaintBTN').addEventListener('click', repaint);
@@ -125,14 +137,14 @@ Repaints são disparados quando a aparência de um elemento é alterada sem alte
 Reflows são os mais custosos, causados quando as mudanças alterando o layout da página,
 como por exemplo alterar o width de um elemento.
 
-` 
+`
 
     for (var i = 0; i &lt; 100; i++) {
       document.getElementById("myList").innerHTML += "&lt;span&gt;" + i + "&lt;/span&gt;";
     }
 `
 
-` 
+`
 
     var myList = "";
     for (var i = 0; i &lt; 100; i++) {
@@ -141,7 +153,7 @@ como por exemplo alterar o width de um elemento.
     document.getElementById("myList").innerHTML = myList;
 `
 
-` 
+`
 
     var myListHTML = document.getElementById("myList").innerHTML;
     for (var i = 0; i &lt; 100; i++) {
@@ -157,7 +169,7 @@ como por exemplo alterar o width de um elemento.
 
 ## SAMPLES
 * [REPAINT](samples/repaint.html)
-* * [REFLOW](samples/reflow-1.html)
+* [REFLOW](samples/reflow-1.html)
 * [REPAINT/REFLOW](samples/repaint-reflow.html)
 
 
@@ -167,14 +179,11 @@ como por exemplo alterar o width de um elemento.
 * http://dev.w3.org/csswg/cssom/
 * https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
 * https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model?hl=pt-br#css-object-model-cssom
-
+* http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
 * https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp?hl=en
 * https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp?hl=en
 * https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path?hl=en
-
 * http://browserdiet.com/pt/
-
 * https://www.youtube.com/watch?v=jw4tVn7CRcI
 * https://www.youtube.com/watch?v=a2_6bGNZ7bA
-
 * https://developer.mozilla.org/pt-BR/docs/Tools/Paint_Flashing_Tool
