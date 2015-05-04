@@ -19,9 +19,9 @@ __O que é HTML ?__
 
 HyperText Markup Language (Linguagem de Marcação de Hipertexto)
 
-HTML é nada mais nada menos que um arquivo de texto que possui uma síntaxe que usa __tags__ para que o browser saiba o que e como interpretar essas palavras.
-
 ![HTML](images/html.jpg)
+
+HTML é nada mais nada menos que um arquivo de texto que possui uma síntaxe que usa __tags__ para que o browser saiba o que e como interpretar essas palavras.
 
 __PS:__ Dar alguns exemplos como, quando queremos mostrar uma imagem/paragrafo/citação e por aí vai.
 
