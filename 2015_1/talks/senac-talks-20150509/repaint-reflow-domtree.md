@@ -1,6 +1,5 @@
 # Renderização - Render/Repaint/Reflow/DOMTREE
 
-## Apresentação
 
 -----------------------------------
 
