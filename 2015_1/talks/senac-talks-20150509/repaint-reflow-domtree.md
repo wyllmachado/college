@@ -56,7 +56,7 @@ __CRIAR PAGINA BONITONA__
 ### DOM
 Document Object Model
 
-![DOM - Table](images/table.gif)
+![dom-full-process](images/dom-full-process.png)
 
 * Conversão
 * Criação de tokens
@@ -64,8 +64,6 @@ Document Object Model
 * Criação do DOM
 
 #### O que o DOM não é?
-
-![dom-full-process](images/dom-full-process.png)
 
 * Não é um documento de especificação binária.
 * Não é para setar uma estrutura de dados
