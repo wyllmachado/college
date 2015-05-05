@@ -1,6 +1,5 @@
 # Renderização - Render/Repaint/Reflow/DOMTREE
 
-
 -----------------------------------
 
 * __Nome:__ Robson Júnior
@@ -20,8 +19,8 @@ HyperText Markup Language (Linguagem de Marcação de Hipertexto)
 
 ![HTML](images/html.jpg)
 
-HTML é nada mais nada menos que um arquivo de texto que possui uma síntaxe que usa __tags__ para que o browser saiba o que e como interpretar essas palavras.
-
+HTML é nada mais nada menos que um arquivo de texto que possui uma síntaxe
+que usa __tags__ para que o browser saiba o que e como interpretar essas palavras.
 
 #### Examplos
 * __Parágrafo:__ p
@@ -31,8 +30,9 @@ HTML é nada mais nada menos que um arquivo de texto que possui uma síntaxe que
 
 ## CSS
 
-Cascading Style Sheets ou apenas CSS, é uma linguagem de folha de estilo, é o responsável por hoje nós termos uma página
-bonita, cheio de cores/animações etc...
+* Cascading Style Sheets ou apenas CSS
+* é uma linguagem de folha de estilo
+* responsável por hoje nós termos uma página
 
 `
 
@@ -57,7 +57,11 @@ __CRIAR PAGINA BONITONA__
 ##DOM/CSSOM
 
 ### DOM (Document Object Model)
-DOM nada mais nada menos é do que o HTML parseado, mas antes o browser teve um trabalho todo para chegar nesse resultado.
+
+__Brincadeira com DOM do Fast And Furious__
+
+DOM nada mais e nada menos é do que o HTML parseado, porém,
+antes o browser passou por um grande trabalho para chegar nesse resultado (o DOM).
 
 ![dom-full-process](images/dom-full-process.png)
 
@@ -65,7 +69,6 @@ DOM nada mais nada menos é do que o HTML parseado, mas antes o browser teve um 
 * Criação de tokens
 * Lexicalização
 * Criação do DOM
-
 
 #### O que o DOM não é?
 * Não é um documento de especificação binária;
@@ -81,7 +84,9 @@ DOM nada mais nada menos é do que o HTML parseado, mas antes o browser teve um 
 
 
 ### CSSOM
-CSS Object Model provém APIS que permite consultar e manipular estilos. Responsável também pelos parses genéricos e serialização das regras para as media queries, seletores e também o próprio css.
+CSS Object Model provém APIS que permite consultar e manipular estilos.
+Responsável também pelos parses genéricos e serialização das regras para as media queries,
+seletores e também o próprio css.
 
 ![CSSOM - Contrução](images/cssom-construction.png)
 
@@ -90,10 +95,10 @@ Como podem ver, ele também passa pelos mesmo processos da criação do DOM, só
 ![CSSOM - Tree](images/cssom-tree.png)
 
 ### Algumas observações
- * Bytes → caracteres → tokens → nós → modelo de objeto.
- * A marcação HTML é transformada em DOM, a marcação CSS é transformada em CSSOM
- * DOM e CSSOM são estruturas de dados independentes.
- * O Chrome DevTools Timeline possibilita capturar e inspecionar os custos de criação e processamento de DOM e CSSOM.
+* Bytes → caracteres → tokens → nós → modelo de objeto.
+* A marcação HTML é transformada em DOM, a marcação CSS é transformada em CSSOM
+* DOM e CSSOM são estruturas de dados independentes.
+* O Chrome DevTools Timeline possibilita capturar e inspecionar os custos de criação e processamento de DOM e CSSOM.
 
 
 ## Renderizando uma webpage - DOM TREE
