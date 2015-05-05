@@ -34,8 +34,7 @@ que usa __tags__ para que o browser saiba o que e como interpretar essas palavra
 * é uma linguagem de folha de estilo
 * responsável por hoje nós termos uma página
 
-`
-
+``` CSS
     body {
         background-color: #dedede;
     }
@@ -47,8 +46,7 @@ que usa __tags__ para que o browser saiba o que e como interpretar essas palavra
         border-radius: 4px;
         border: solid 1px rgba(0,0,0,0.2);
     }
-
-`
+```
 
 __CRIAR PAGINA BONITONA__
 ![Página Bonitona](images/pretty-page.jpg)
@@ -126,8 +124,7 @@ __display: none !== visibility: hidden__
 ## Repaint
 Repaints são disparados quando a aparência de um elemento é alterada sem alterar seu layout.
 
-`
-
+``` javascript
     function repaint () {
     	var colors = ['purple', 'black', 'blue', 'red', 'green', 'brown', 'white', 'gray'],
     		color  = colors[parseInt(Math.random() * colors.length)];
@@ -135,8 +132,7 @@ Repaints são disparados quando a aparência de um elemento é alterada sem alte
     	document.body.style.backgroundColor = color;
     };
     document.getElementById('repaintBTN').addEventListener('click', repaint);
-
-`
+```
 
 
 ## Reflow
@@ -146,26 +142,27 @@ como por exemplo alterar o width de um elemento.
 __Exemplo__
 Esses três exemplos abordam um pouco de performance, apenas para dar uma idéia.
 
-`
-	function reflow () {
-		var widthBox = ['20px',
-						'40px',
-						'80px',
-						'100px',
-						'120px',
-						'140px',
-						'160px',
-						'180px',
-						'200px',
-						'220px'],
-			squareBox = document.getElementById('squareBox'),
-			sizeBox   = widthBox[parseInt(Math.random() * widthBox.length)];
-		squareBox.style.width = sizeBox;
-		squareBox.style.height = sizeBox;
-		console.log('REFLOW: ' + sizeBox + ' x ' + sizeBox);
-	};
-	document.getElementById('reflowBTN').addEventListener('click', reflow);
-`
+``` javascript
+function reflow () {
+    var widthBox = ['20px',
+                    '40px',
+		    '80px',
+		    '100px',
+		    '120px',
+		    '140px',
+	    	    '160px',
+		    '180px',
+		    '200px',
+		    '220px'],
+		squareBox = document.getElementById('squareBox'),
+		sizeBox   = widthBox[parseInt(Math.random() * widthBox.length)];
+
+    squareBox.style.width = sizeBox;
+    squareBox.style.height = sizeBox;
+};
+
+document.getElementById('reflowBTN').addEventListener('click', reflow);
+```
 
 
 ## Tools
