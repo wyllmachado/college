@@ -59,14 +59,15 @@ __CRIAR PAGINA BONITONA__
 __Brincadeira com DOM do Fast And Furious__
 
 DOM nada mais e nada menos é do que o HTML parseado, porém,
-antes o browser passou por um grande trabalho para chegar nesse resultado (o DOM).
+antes o browser passou por um grande trabalho para chegar nesse resultado(DOM).
 
-![dom-full-process](images/dom-full-process.png)
-
+#### Os quatro passos
 * Conversão
 * Criação de tokens
 * Lexicalização
 * Criação do DOM
+
+![dom-full-process](images/dom-full-process.png)
 
 #### O que o DOM não é?
 * Não é um documento de especificação binária;
