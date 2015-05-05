@@ -100,13 +100,13 @@ Como podem ver, ele também passa pelos mesmo processos da criação do DOM, só
 * Lexicalização
 * Criação do DOM
 
+##### Pazer, CSSOM
 ![CSSOM - Tree](images/cssom-tree.png)
 
-### Algumas observações
+### DOM/CSSOM observações
 * Bytes → caracteres → tokens → nós → modelo de objeto.
 * A marcação HTML é transformada em DOM, a marcação CSS é transformada em CSSOM
 * DOM e CSSOM são estruturas de dados independentes.
-* O Chrome DevTools Timeline possibilita capturar e inspecionar os custos de criação e processamento de DOM e CSSOM.
 
 
 ## Renderizando uma webpage - DOM TREE
