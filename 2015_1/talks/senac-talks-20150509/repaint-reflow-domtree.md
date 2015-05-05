@@ -113,18 +113,19 @@ Como podem ver, ele também passa pelos mesmo processos da criação do DOM, só
 
 ![RENDER TREE](images/render-tree-construction.png)
 
-### Construindo árvore de renderização
+__display: none !== visibility: hidden__
+
 * Iniciando na raiz do DOM, analiza todos nodos visíveis
     - nós invisíveis
     - nodos ocultos por CSS
 * Encontra no CSSOM a regra de cada nodo visível
 * Devolve nodos visíveis com seus estilos computados
 
-__display: none !== visibility: hidden__
-
+### Relativo -> Absoluto
 ![Position relative to absolute](images/layout-viewport.png)
 
-### Recaptulando os passos
+
+### Recaptulando DOM TREE
 * A árvore do DOM e do CSSOM se combinam para formar a árvore de renderização.
 * A árvore de renderização contém apenas os nós necessários para renderizar a página.
 * O layout computa a posição e o tamanho exatos de cada objeto.
