@@ -89,9 +89,16 @@ antes o browser passou por um grande trabalho para chegar nesse resultado(DOM).
 * Responsável também pelos parses genéricos e serialização das regras para as media queries,
 seletores e também o próprio css.
 
+#### Os quatro passos
 ![CSSOM - Contrução](images/cssom-construction.png)
 
 Como podem ver, ele também passa pelos mesmo processos da criação do DOM, só que por sua vez tornando-se CSSOM.
+
+#### Os quatro passos
+* Conversão
+* Criação de tokens
+* Lexicalização
+* Criação do DOM
 
 ![CSSOM - Tree](images/cssom-tree.png)
 
