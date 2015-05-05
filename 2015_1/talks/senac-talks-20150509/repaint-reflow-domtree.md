@@ -84,8 +84,9 @@ antes o browser passou por um grande trabalho para chegar nesse resultado(DOM).
 
 
 ### CSSOM
-CSS Object Model provém APIS que permite consultar e manipular estilos.
-Responsável também pelos parses genéricos e serialização das regras para as media queries,
+* CSS Object Model
+* Provém APIS que permite consultar e manipular estilos.
+* Responsável também pelos parses genéricos e serialização das regras para as media queries,
 seletores e também o próprio css.
 
 ![CSSOM - Contrução](images/cssom-construction.png)
