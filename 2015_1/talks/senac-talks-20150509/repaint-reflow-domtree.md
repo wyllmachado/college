@@ -147,29 +147,25 @@ __Exemplo__
 Esses três exemplos abordam um pouco de performance, apenas para dar uma idéia.
 
 `
-
-    for (var i = 0; i &lt; 100; i++) {
-      document.getElementById("myList").innerHTML += "&lt;span&gt;" + i + "&lt;/span&gt;";
-    }
+	function reflow () {
+		var widthBox = ['20px',
+						'40px',
+						'80px',
+						'100px',
+						'120px',
+						'140px',
+						'160px',
+						'180px',
+						'200px',
+						'220px'],
+			squareBox = document.getElementById('squareBox'),
+			sizeBox   = widthBox[parseInt(Math.random() * widthBox.length)];
+		squareBox.style.width = sizeBox;
+		squareBox.style.height = sizeBox;
+		console.log('REFLOW: ' + sizeBox + ' x ' + sizeBox);
+	};
+	document.getElementById('reflowBTN').addEventListener('click', reflow);
 `
-
-`
-
-    var myList = "";
-    for (var i = 0; i &lt; 100; i++) {
-      myList += "&lt;span&gt;" + i + "&lt;/span&gt;";
-    }
-    document.getElementById("myList").innerHTML = myList;
-`
-
-`
-
-    var myListHTML = document.getElementById("myList").innerHTML;
-    for (var i = 0; i &lt; 100; i++) {
-      myListHTML += "&lt;span&gt;" + i + "&lt;/span&gt;";
-    }
-`
-[Resultados JSPerf](http://jsperf.com/browser-diet-dom-manipulation/11)
 
 
 ## Tools
@@ -181,6 +177,7 @@ Esses três exemplos abordam um pouco de performance, apenas para dar uma idéia
 * [REPAINT](samples/repaint.html)
 * [REFLOW](samples/reflow-1.html)
 * [REPAINT/REFLOW](samples/repaint-reflow.html)
+* [REPAINT/REFLOW PERFORMANCE](http://jsperf.com/browser-diet-dom-manipulation/11) 
 
 
 ## References
