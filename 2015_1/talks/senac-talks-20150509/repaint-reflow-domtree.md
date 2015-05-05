@@ -79,6 +79,7 @@ antes o browser passou por um grande trabalho para chegar nesse resultado(DOM).
 * Responsável por especificar a interface
 * O DOM é simplesmente uma API para este conjunto de informações.
 
+##### Pazer, DOM
 ![DOM - Table](images/dom-tree.png)
 
 
