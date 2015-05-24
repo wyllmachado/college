@@ -34,8 +34,7 @@ que usa __tags__ para que o browser saiba o que e como interpretar essas palavra
 * é uma linguagem de folha de estilo
 * responsável por hoje nós termos uma página
 
-`
-
+``` CSS
     body {
         background-color: #dedede;
     }
@@ -47,8 +46,7 @@ que usa __tags__ para que o browser saiba o que e como interpretar essas palavra
         border-radius: 4px;
         border: solid 1px rgba(0,0,0,0.2);
     }
-
-`
+```
 
 __CRIAR PAGINA BONITONA__
 ![Página Bonitona](images/pretty-page.jpg)
@@ -61,14 +59,15 @@ __CRIAR PAGINA BONITONA__
 __Brincadeira com DOM do Fast And Furious__
 
 DOM nada mais e nada menos é do que o HTML parseado, porém,
-antes o browser passou por um grande trabalho para chegar nesse resultado (o DOM).
+antes o browser passou por um grande trabalho para chegar nesse resultado(DOM).
 
-![dom-full-process](images/dom-full-process.png)
-
+#### Os quatro passos
 * Conversão
 * Criação de tokens
 * Lexicalização
 * Criação do DOM
+
+![dom-full-process](images/dom-full-process.png)
 
 #### O que o DOM não é?
 * Não é um documento de especificação binária;
@@ -80,43 +79,53 @@ antes o browser passou por um grande trabalho para chegar nesse resultado (o DOM
 * Responsável por especificar a interface
 * O DOM é simplesmente uma API para este conjunto de informações.
 
+##### Pazer, DOM
 ![DOM - Table](images/dom-tree.png)
 
 
 ### CSSOM
-CSS Object Model provém APIS que permite consultar e manipular estilos.
-Responsável também pelos parses genéricos e serialização das regras para as media queries,
+* CSS Object Model
+* Provém APIS que permite consultar e manipular estilos.
+* Responsável também pelos parses genéricos e serialização das regras para as media queries,
 seletores e também o próprio css.
 
+#### Os quatro passos
 ![CSSOM - Contrução](images/cssom-construction.png)
 
 Como podem ver, ele também passa pelos mesmo processos da criação do DOM, só que por sua vez tornando-se CSSOM.
 
+#### Os quatro passos
+* Conversão
+* Criação de tokens
+* Lexicalização
+* Criação do DOM
+
+##### Pazer, CSSOM
 ![CSSOM - Tree](images/cssom-tree.png)
 
-### Algumas observações
+### DOM/CSSOM observações
 * Bytes → caracteres → tokens → nós → modelo de objeto.
 * A marcação HTML é transformada em DOM, a marcação CSS é transformada em CSSOM
 * DOM e CSSOM são estruturas de dados independentes.
-* O Chrome DevTools Timeline possibilita capturar e inspecionar os custos de criação e processamento de DOM e CSSOM.
 
 
 ## Renderizando uma webpage - DOM TREE
 
 ![RENDER TREE](images/render-tree-construction.png)
 
-### Construindo árvore de renderização
+__display: none !== visibility: hidden__
+
 * Iniciando na raiz do DOM, analiza todos nodos visíveis
     - nós invisíveis
     - nodos ocultos por CSS
 * Encontra no CSSOM a regra de cada nodo visível
 * Devolve nodos visíveis com seus estilos computados
 
-__display: none !== visibility: hidden__
-
+### Relativo -> Absoluto
 ![Position relative to absolute](images/layout-viewport.png)
 
-### Recaptulando os passos
+
+### Recaptulando DOM TREE
 * A árvore do DOM e do CSSOM se combinam para formar a árvore de renderização.
 * A árvore de renderização contém apenas os nós necessários para renderizar a página.
 * O layout computa a posição e o tamanho exatos de cada objeto.
@@ -126,8 +135,7 @@ __display: none !== visibility: hidden__
 ## Repaint
 Repaints são disparados quando a aparência de um elemento é alterada sem alterar seu layout.
 
-`
-
+``` javascript
     function repaint () {
     	var colors = ['purple', 'black', 'blue', 'red', 'green', 'brown', 'white', 'gray'],
     		color  = colors[parseInt(Math.random() * colors.length)];
@@ -135,8 +143,7 @@ Repaints são disparados quando a aparência de um elemento é alterada sem alte
     	document.body.style.backgroundColor = color;
     };
     document.getElementById('repaintBTN').addEventListener('click', repaint);
-
-`
+```
 
 
 ## Reflow
@@ -146,30 +153,27 @@ como por exemplo alterar o width de um elemento.
 __Exemplo__
 Esses três exemplos abordam um pouco de performance, apenas para dar uma idéia.
 
-`
+``` javascript
+function reflow () {
+    var widthBox = ['20px',
+                    '40px',
+		    '80px',
+		    '100px',
+		    '120px',
+		    '140px',
+	    	    '160px',
+		    '180px',
+		    '200px',
+		    '220px'],
+		squareBox = document.getElementById('squareBox'),
+		sizeBox   = widthBox[parseInt(Math.random() * widthBox.length)];
 
-    for (var i = 0; i &lt; 100; i++) {
-      document.getElementById("myList").innerHTML += "&lt;span&gt;" + i + "&lt;/span&gt;";
-    }
-`
+    squareBox.style.width = sizeBox;
+    squareBox.style.height = sizeBox;
+};
 
-`
-
-    var myList = "";
-    for (var i = 0; i &lt; 100; i++) {
-      myList += "&lt;span&gt;" + i + "&lt;/span&gt;";
-    }
-    document.getElementById("myList").innerHTML = myList;
-`
-
-`
-
-    var myListHTML = document.getElementById("myList").innerHTML;
-    for (var i = 0; i &lt; 100; i++) {
-      myListHTML += "&lt;span&gt;" + i + "&lt;/span&gt;";
-    }
-`
-[Resultados JSPerf](http://jsperf.com/browser-diet-dom-manipulation/11)
+document.getElementById('reflowBTN').addEventListener('click', reflow);
+```
 
 
 ## Tools
@@ -181,6 +185,7 @@ Esses três exemplos abordam um pouco de performance, apenas para dar uma idéia
 * [REPAINT](samples/repaint.html)
 * [REFLOW](samples/reflow-1.html)
 * [REPAINT/REFLOW](samples/repaint-reflow.html)
+* [REPAINT/REFLOW PERFORMANCE](http://jsperf.com/browser-diet-dom-manipulation/11) 
 
 
 ## References
