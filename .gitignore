@@ -1,0 +1,7 @@
+.swp
+.DS_Store
+.zip
+
+dist
+node_modules
+
