@@ -1,4 +1,7 @@
 # AspiraJS Generator
+
+!['JavaScript Logo'](js.png)
+
 AspiraJS é apenas mais um Generator para Yeoman, um simples protóripo 
 desenvolvido para cadeira de Engenharia de Software.
 
