@@ -29,7 +29,7 @@ WHERE NOT EXISTS (
     Porto Alegre            10/08/02    2
     Porto Alegre            11/11/02    1
 */
-SELECT DISTINCT v.cidade_part, ev.data
+SELECT v.cidade_part, ev.data
 FROM voo v, execucao_voo ev, piloto pil
 WHERE pil.nome = 'Paulo'
 AND ev.cod_piloto = pil.cod_piloto
@@ -44,6 +44,9 @@ ORDER BY v.cidade_part DESC
     --------------------    --------
     Porto Alegre            11/11/02
 */
+SELECT v.cidade_part, ev.data
+FROM voo v, execucao_voo ev, piloto pil
+WHERE pil.nome = 'Paulo'
 
 /*
     d) Recuperar o código e nome de clientes que marcaram passagem em pelo menos todos os vôos
