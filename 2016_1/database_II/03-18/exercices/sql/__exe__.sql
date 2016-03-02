@@ -34,7 +34,7 @@ FROM voo v, execucao_voo ev, piloto pil
 WHERE pil.nome = 'Paulo'
 AND ev.cod_piloto = pil.cod_piloto
 AND ev.num_voo = v.num_voo
-GROUP BY v.cidade_part, ev,data
+GROUP BY v.cidade_part, ev.data
 ORDER BY v.cidade_part DESC
 
 /*
