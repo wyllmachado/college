@@ -29,6 +29,13 @@ WHERE NOT EXISTS (
     Porto Alegre            10/08/02    2
     Porto Alegre            11/11/02    1
 */
+SELECT DISTINCT v.cidade_part, ev.data
+FROM voo v, execucao_voo ev, piloto pil
+WHERE pil.nome = 'Paulo'
+AND ev.cod_piloto = pil.cod_piloto
+AND ev.num_voo = v.num_voo
+GROUP BY v.cidade_part, ev,data
+ORDER BY v.cidade_part DESC
 
 /*
     c) Obter a cidade de partida e a data do último vôo que o piloto Paulo tenha comandado.
