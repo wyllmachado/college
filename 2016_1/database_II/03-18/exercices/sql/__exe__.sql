@@ -29,9 +29,11 @@ WHERE NOT EXISTS (
     Porto Alegre            10/08/02    2
     Porto Alegre            11/11/02    1
 */
-SELECT v.cidade_part, ev.data
-FROM voo v, execucao_voo ev, piloto pil
+SELECT v.cidade_part, ev.data, count(p.cod_cli)
+FROM voo v, execucao_voo ev, piloto pil, passagem p
 WHERE pil.nome = 'Paulo'
+AND p.num_voo = ev.num_voo
+AND p.data = ev.data
 AND ev.cod_piloto = pil.cod_piloto
 AND ev.num_voo = v.num_voo
 GROUP BY v.cidade_part, ev.data
@@ -47,6 +49,10 @@ ORDER BY v.cidade_part DESC
 SELECT v.cidade_part, ev.data
 FROM voo v, execucao_voo ev, piloto pil
 WHERE pil.nome = 'Paulo'
+AND ev.cod_piloto = pil.cod_piloto
+AND ev.num_voo = v.num_voo
+GROUP BY v.cidade_part, ev.data
+ORDER BY ev.data DESC LIMIT 1
 
 /*
     d) Recuperar o código e nome de clientes que marcaram passagem em pelo menos todos os vôos
@@ -56,6 +62,25 @@ WHERE pil.nome = 'Paulo'
     ----------  ------------------------------
     c3          Carlos
 */
+SELECT cp.cod_cli, cp.nome
+FROM cliente_p cp, voo v, execucao_voo ev, passagem p, piloto pil
+WHERE pil.nome = 'Ronaldo'
+AND cp.cod_cli = p.cod_cli
+AND p.num_voo = ev.num_voo
+AND p.data = ev.data
+AND ev.cod_piloto = pil.cod_piloto
+EXCEPT
+SELECT cp.cod_cli, cp.nome
+FROM cliente_p cp
+WHERE NOT EXISTS (
+    SELECT cp.cod_cli, cp.nome
+    FROM voo v, execucao_voo ev, passagem p
+    WHERE v.cidade_part != 'Porto Alegre'
+    AND cp.cod_cli = p.cod_cli
+    AND p.num_voo = ev.num_voo
+    AND p.data = ev.data
+    AND ev.num_voo = v.num_voo
+)
 
 /*
     e) Recuperar o código e nome de clientes que marcaram passagem em pelo menos todos os vôos
