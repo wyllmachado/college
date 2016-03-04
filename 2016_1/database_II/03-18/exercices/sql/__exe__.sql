@@ -13,7 +13,7 @@ WHERE NOT EXISTS (
     WHERE ev.num_voo = v.num_voo    
     AND v.cidade_cheg = 'Rio de Janeiro'
     AND p.num_voo = ev.num_voo
-    AND p.data = '20-sep-02'
+    AND p.data = '2002-09-20'
     AND cp.cod_cli = p.cod_cli
 )
 
@@ -91,3 +91,26 @@ WHERE NOT EXISTS (
     ----------  --------------------------
     c3          Carlos
 */
+SELECT cp.cod_cli, cp.nome
+FROM cliente_p cp, voo v, execucao_voo ev, passagem p, piloto pil
+WHERE pil.nome = 'Ronaldo'
+AND cp.cod_cli = p.cod_cli
+AND p.num_voo = ev.num_voo
+AND p.data = ev.data
+AND p.data < '2003-01-01'
+AND ev.cod_piloto = pil.cod_piloto
+GROUP BY cp.cod_cli, cp.nome
+HAVING COUNT(p.cod_cli) > 1
+EXCEPT
+SELECT cp.cod_cli, cp.nome
+FROM cliente_p cp
+WHERE NOT EXISTS (
+    SELECT cp.cod_cli, cp.nome
+    FROM voo v, execucao_voo ev, passagem p
+    WHERE v.cidade_part != 'Porto Alegre'
+    AND cp.cod_cli = p.cod_cli
+    AND p.num_voo = ev.num_voo
+    AND p.data = ev.data
+    AND ev.num_voo = v.num_voo
+)
+
