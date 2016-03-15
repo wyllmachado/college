@@ -2,7 +2,7 @@
 SAMPLE 01
 */
 
-REATE or REPLACE FUNCTION fn_exemplo_a()
+CREATE or REPLACE FUNCTION fn_exemplo_a()
 RETURNS integer AS $$
 
 <<bloco_externo>> -- bloco nomeado
