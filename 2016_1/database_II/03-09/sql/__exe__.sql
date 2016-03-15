@@ -52,14 +52,34 @@ CREATE TABLE ex_multa(
  AUTO INCREMENTE SAMPLE
  INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor) values('123ab', 100.10, 10.10, 10, 300.00)
 */
-
-CREATE OR REPLACE FUNCTION MyNameFunction(cnh char(5), velocidadeApurada decimal(5,2))
-RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION processCalc(p_cnh CHAR(5), velocidadeApurada DECIMAL(5,2))
+RETURNS VARCHAR(100) AS $$
+    DECLARE
+    _motorista ex_motorista % ROWTYPE;
+    _msg VARCHAR(100);
+    _velocidadeApurada DECIMAL(5,2);
+    
     BEGIN
+        SELECT * INTO _motorista FROM ex_motorista
+        WHERE ex_motorista.cnh = p_cnh;
+
+        _velocidadeApurada := (velocidadeApurada * 90) / 100;
         
-    END
+        IF _velocidadeApurada > 80.00 AND _velocidadeApurada < 110.01 THEN
+            INSERT INTO ex_multa(cnh, _velocidadeApurada, _velocidadeApurada, pontos, valor) VALUES(p_cnh, velocidadeApurada, _velocidadeApurada, 20);
+        ELSEIF _velocidadeApurada > 120.00 AND _velocidadeApurada < 140.01 THEN
+            INSERT INTO ex_multa(cnh, _velocidadeApurada, _velocidadeApurada, pontos, valor) VALUES(p_cnh, velocidadeApurada, _velocidadeApurada, 40);
+        ELSEIF _velocidadeApurada > 140.00 THEN
+            INSERT INTO ex_multa(cnh, _velocidadeApurada, _velocidadeApurada, pontos, valor) VALUES(p_cnh, velocidadeApurada, _velocidadeApurada, 60);
+        ELSE
+            _msg := 'Velocidade apurada de ' || _motorista.nome || ' à ' || _velocidadeApurada ||'km/h está dentro da lei';
+        END IF;
+    
+        RETURN _msg;
+    END;
 $$ LANGUAGE plpgsql;
 
+SELECT * FROM processCalc('123AB', 70.00);
 
 /*
     • Escreva um outro procedimento que atualize o campo totalMultas da
