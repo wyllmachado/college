@@ -81,7 +81,7 @@ RETURNS VARCHAR(100) AS $$
             END IF;
         END IF;        
 
-    EXCEPTION WHEN others THEN
+        EXCEPTION WHEN others THEN
             ROLLBACK;
            _msg := 'Error -> Aspira EXCEPTION :@';
 
