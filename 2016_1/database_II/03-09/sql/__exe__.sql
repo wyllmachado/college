@@ -58,53 +58,49 @@ RETURNS VARCHAR(100) AS $$
         _motorista ex_motorista % ROWTYPE;
         _msg VARCHAR(100);
         _velocidadeApurada DECIMAL(5,2);
-    
+
     BEGIN
         SELECT * INTO _motorista FROM ex_motorista
         WHERE ex_motorista.cnh = p_cnh;
-    
+
         _velocidadeApurada := (velocidadeApurada * 90) / 100;
 
         IF _motorista.nome is NULL THEN
             _msg := 'Não existe dados';
             RETURN _msg;
-        ELSE 
-        
+        ELSE
             IF _velocidadeApurada > 80.00 AND _velocidadeApurada < 110.01 THEN
                 INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor) VALUES(p_cnh, velocidadeApurada, _velocidadeApurada, 20, 120.00);
             ELSEIF _velocidadeApurada > 120.00 AND _velocidadeApurada < 140.01 THEN
                 INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor) VALUES(p_cnh, velocidadeApurada, _velocidadeApurada, 40, 350.00);
             ELSEIF _velocidadeApurada > 140.00 THEN
                 INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor) VALUES(p_cnh, velocidadeApurada, _velocidadeApurada, 60, 680.00);
-            ELSE   
+            ELSE
                 _msg := 'Velocidade apurada de ' || _motorista.nome || ' à ' || _velocidadeApurada ||'km/h está dentro da lei';
-               
                 RETURN _msg;
             END IF;
-        END IF;
-            
+        END IF;        
+
+    EXCEPTION WHEN others THEN
+            ROLLBACK;
+           _msg := 'Error -> Aspira EXCEPTION :@';
+
+           RETURN _msg;
+           
         COMMIT;
         RETURN _msg;
-
-        EXCEPTION WHEN others THEN
-            ROLLBACK;
-           _msg := 'Error';
-
-           RETURN _msg;    
     END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE 'plpgsql';
 
 DO $$
     DECLARE
     _msg VARCHAR(100);
 
     BEGIN
-    
         _msg := processCalc('123AB', 70.00);
         RAISE NOTICE 'MSG: %',  _msg;
     END
-$$    
-
+$$
 /*
     • Escreva um outro procedimento que atualize o campo totalMultas da
     tabela ex_motorista a partir dos totais apurados para cada
