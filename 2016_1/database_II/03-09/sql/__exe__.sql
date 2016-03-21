@@ -49,59 +49,6 @@ CREATE TABLE ex_multa(
 -- insert into ex_motorista values ('123AB', 'Carlo');
 
 /*
- AUTO INCREMENTE SAMPLE
- INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor) values('123ab', 100.10, 10.10, 10, 300.00)
-*/
-CREATE OR REPLACE FUNCTION processCalc(p_cnh CHAR(5), velocidadeApurada DECIMAL(5,2))
-RETURNS VARCHAR(100) AS $$
-    DECLARE
-        _motorista ex_motorista % ROWTYPE;
-        _msg VARCHAR(100);
-        _velocidadeApurada DECIMAL(5,2);
-
-    BEGIN
-        SELECT * INTO _motorista FROM ex_motorista
-        WHERE ex_motorista.cnh = p_cnh;
-
-        _velocidadeApurada := (velocidadeApurada * 90) / 100;
-
-        IF _motorista.nome is NULL THEN
-            _msg := 'Não existe dados';
-            RETURN _msg;
-        ELSE
-            IF _velocidadeApurada > 80.00 AND _velocidadeApurada < 110.01 THEN
-                INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor) VALUES(p_cnh, velocidadeApurada, _velocidadeApurada, 20, 120.00);
-            ELSEIF _velocidadeApurada > 120.00 AND _velocidadeApurada < 140.01 THEN
-                INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor) VALUES(p_cnh, velocidadeApurada, _velocidadeApurada, 40, 350.00);
-            ELSEIF _velocidadeApurada > 140.00 THEN
-                INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor) VALUES(p_cnh, velocidadeApurada, _velocidadeApurada, 60, 680.00);
-            ELSE
-                _msg := 'Velocidade apurada de ' || _motorista.nome || ' à ' || _velocidadeApurada ||'km/h está dentro da lei';
-                RETURN _msg;
-            END IF;
-        END IF;        
-
-        EXCEPTION WHEN others THEN
-            ROLLBACK;
-           _msg := 'Error -> Aspira EXCEPTION :@';
-
-           RETURN _msg;
-           
-        COMMIT;
-        RETURN _msg;
-    END;
-$$ LANGUAGE 'plpgsql';
-
-DO $$
-    DECLARE
-    _msg VARCHAR(100);
-
-    BEGIN
-        _msg := processCalc('123AB', 70.00);
-        RAISE NOTICE 'MSG: %',  _msg;
-    END
-$$
-/*
     • Escreva um outro procedimento que atualize o campo totalMultas da
     tabela ex_motorista a partir dos totais apurados para cada
     motorista autuado na tabela ex_multa.
@@ -112,3 +59,86 @@ $$
     • OBS2:cuidado para não duplicar valores na coluna totalMultas para
     os casos em que a rotina for disparada mais de uma vez.
 */
+
+-- SOLUCAO DO EXERCICIO DAQUI PARA BAIXO
+CREATE OR REPLACE FUNCTION updateTableExMulta(cnhParam VARCHAR(5))
+RETURNS VARCHAR(100) AS $$
+    DECLARE
+        _name VARCHAR(50);
+        _pontos DECIMAL(8,2);
+        _qtdMultas DECIMAL(8,2);
+        _totalMultas DECIMAL(8,2);
+    
+    BEGIN
+        _name := (SELECT ex_motorista.nome FROM ex_motorista WHERE ex_motorista.cnh = cnhParam);    
+        _qtdMultas := (SELECT COUNT(ex_multa.cnh) FROM ex_multa WHERE ex_multa.cnh = cnhParam);
+        _pontos  := (SELECT SUM(ex_multa.pontos) FROM ex_multa WHERE ex_multa.cnh = cnhParam);
+
+        IF _qtdMultas > 0 THEN
+            _totalMultas := _qtdMultas;
+        ELSE
+            IF _pontos IS NULL THEN
+                _pontos := 0.00;
+                    _totalMultas := 0.00;
+            END IF;
+        END IF;
+
+        UPDATE ex_motorista SET totalMultas = _totalMultas WHERE ex_motorista.cnh = cnhParam;
+    
+        RETURN 'O motorista ' || _name || ' soma ' || _pontos || ' pontos em em multas.';
+    END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION multaProcess(
+    cnhParam CHAR(5),
+    velocidadeApurada DECIMAL(5,2)
+) RETURNS VOID AS $$
+    DECLARE
+        _motorista ex_motorista % ROWTYPE;
+        _velocidadeApurada DECIMAL(5,2);
+        _updateTableExMulta VARCHAR(100);
+        
+    BEGIN
+        SELECT * INTO _motorista FROM ex_motorista WHERE ex_motorista.cnh = cnhParam;
+
+        IF _motorista.nome is NULL THEN
+            RAISE NOTICE '# ERROR/CONSULT TABLE: Motorista inexistente';
+        ELSE
+            _velocidadeApurada := (velocidadeApurada * 90) / 100;
+
+            IF _velocidadeApurada > 80.00 AND _velocidadeApurada < 110.01 THEN
+                INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor)
+                VALUES(cnhParam, velocidadeApurada, _velocidadeApurada, 20, 120.00);               
+            ELSEIF _velocidadeApurada > 120.00 AND _velocidadeApurada < 140.01 THEN
+                INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor)
+                VALUES(cnhParam, velocidadeApurada, _velocidadeApurada, 40, 350.00);    
+            ELSEIF _velocidadeApurada > 140.00 THEN
+                INSERT INTO ex_multa(cnh, velocidadeApurada, velocidadeCalculada, pontos, valor)
+                VALUES(cnhParam, velocidadeApurada, _velocidadeApurada, 60, 680.00);    
+            END IF;
+            
+            _updateTableExMulta := updateTableExMulta(cnhParam);
+            
+            RAISE NOTICE '# %', _updateTableExMulta;
+        END IF;
+
+        EXCEPTION WHEN OTHERS THEN
+            -- ROLLBACK;
+            RAISE NOTICE '# ERROR: multaProcess EXCEPTION';
+
+        -- COMMIT;        
+    END;
+$$ LANGUAGE 'plpgsql';
+
+-- PRECISA DESSE INSERT, CASO PROCURADO ALGUEM NAO EXISTENTE, IRÁ DAR UM AVISO.
+-- insert into ex_motorista values ('123AB', 'Carlo');
+
+DO $$
+    DECLARE
+        _exec VARCHAR(100);
+        
+    BEGIN
+       _exec := multaProcess('123AB', 110.00);
+    END 
+$$
+
