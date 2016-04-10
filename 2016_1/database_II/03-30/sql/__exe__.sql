@@ -52,7 +52,8 @@ FROM operario op, construtora const, operario_construtora op_const, obra ob
 WHERE op.cart_trab = op_const.cart_trab
 AND const.cod_const = op_const.cod_const
 AND ob.cod_const = op_const.cod_const
-GROUP BY const.nome_const, op.nomeopd
+AND ob.cod_const = const.cod_const
+GROUP BY const.nome_const, op.nomeop
 
 /*
 	-- 4) Recuperar os nomes dos operários que trabalham em somente uma 
