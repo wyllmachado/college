@@ -104,6 +104,13 @@ AND const.nome_const = 'Encol'
 	Encol				1
 	Goldzstein			1
 */
+SELECT const.nome_const, COUNT(DISTINCT ob.cod_eng_resp)
+FROM construtora const, obra ob, engenheiro eng
+WHERE const.cod_const = ob.cod_const
+AND ob.tipo = 'Edificio'
+AND eng.area_atuacao = 'Edificacao'
+GROUP BY const.nome_const, ob.cod_eng_resp
+ORDER BY const.nome_const ASC
 
 /*
 	-- 7) Para cada operário da construtora Encol, recuperar o seu numero
