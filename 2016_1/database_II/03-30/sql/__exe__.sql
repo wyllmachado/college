@@ -47,13 +47,14 @@ HAVING COUNT(op.nomeop) = (
 	Joao Souza			Encol
 	Joao Souza			Metaplan
 */
-SELECT DISTINCT op.nomeop, const.nome_const
+SELECT op.nomeop, const.nome_const
 FROM operario op, construtora const, operario_construtora op_const, obra ob
 WHERE op.cart_trab = op_const.cart_trab
 AND const.cod_const = op_const.cod_const
 AND ob.cod_const = op_const.cod_const
 AND ob.cod_const = const.cod_const
-GROUP BY const.nome_const, op.nomeop
+GROUP BY op.nomeop, const.nome_const
+HAVING COUNT(op_const.cart_trab) > 1
 
 /*
 	-- 4) Recuperar os nomes dos operários que trabalham em somente uma 
@@ -63,6 +64,14 @@ GROUP BY const.nome_const, op.nomeop
 	------------------------------
 	Luis Padilha
 */
+SELECT op.nomeop
+FROM operario op, construtora const, operario_construtora op_const, obra ob
+WHERE op.cart_trab = op_const.cart_trab
+AND const.cod_const = op_const.cod_const
+AND ob.cod_const = op_const.cod_const
+AND ob.cod_const = const.cod_const
+GROUP BY op.nomeop
+HAVING COUNT(op_const.cart_trab) = 1
 
 /*
 	-- 5) Recuperar os nomes dos engenheiros que atuam
@@ -72,6 +81,18 @@ GROUP BY const.nome_const, op.nomeop
 	------------------------------
 	Luis Silva
 */
+SELECT eng.nome_eng
+FROM engenheiro eng, obra ob, construtora const
+WHERE eng.crea = ob.cod_eng_resp
+AND ob.cod_const = const.cod_const
+GROUP BY eng.nome_eng
+HAVING COUNT(ob.cod_eng_resp) > 1
+INTERSECT
+SELECT eng.nome_eng
+FROM engenheiro eng, obra ob, construtora const
+WHERE eng.crea = ob.cod_eng_resp
+AND ob.cod_const = const.cod_const
+AND const.nome_const = 'Encol'
 
 /*
 	-- 6) Para cada construtora, recuperar o nome da construtora e o
