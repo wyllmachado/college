@@ -47,14 +47,20 @@ HAVING COUNT(op.nomeop) = (
 	Joao Souza			Encol
 	Joao Souza			Metaplan
 */
-SELECT op.nomeop, const.nome_const
-FROM operario op, construtora const, operario_construtora op_const, obra ob
-WHERE op.cart_trab = op_const.cart_trab
-AND const.cod_const = op_const.cod_const
-AND ob.cod_const = op_const.cod_const
-AND ob.cod_const = const.cod_const
-GROUP BY op.nomeop, const.nome_const
-HAVING COUNT(op_const.cart_trab) > 1
+SELECT xx.nomeop, const.nome_const
+FROM construtora const, operario_construtora op_const,
+	(	
+		SELECT op.nomeop, op.cart_trab
+		FROM operario op, construtora const, operario_construtora op_const
+		WHERE op.cart_trab = op_const.cart_trab
+		AND const.cod_const = op_const.cod_const
+		GROUP BY op.nomeop, op.cart_trab
+		HAVING COUNT(op_const.cart_trab) > 1
+	) xx
+WHERE xx.cart_trab = op_const.cart_trab
+AND op_const.cod_const = const.cod_const
+GROUP BY XX.nomeop, const.nome_const
+ORDER BY XX.nomeop DESC
 
 /*
 	-- 4) Recuperar os nomes dos operários que trabalham em somente uma 
@@ -121,3 +127,22 @@ ORDER BY const.nome_const ASC
 	--------------- ------------------------------ -----------------------
 	op030		Joao Souza			1
 */
+SELECT op.cart_trab, op.nomeop, COUNT(ob.cod_obra)
+FROM operario op, construtora const, obra ob, operario_construtora op_const, obra_operario obp
+WHERE const.cod_const = ob.cod_const
+AND ob.cod_obra = obp.cod_obra
+AND op_const.cod_const = ob.cod_const
+AND op_const.cart_trab = op.cart_trab
+AND const.nome_const = 'Encol'
+GROUP BY op.cart_trab, op.nomeop
+INTERSECT
+SELECT op.cart_trab, op.nomeop, COUNT(ob.cod_obra)
+FROM operario op, construtora const, obra ob, operario_construtora op_const, obra_operario obp
+WHERE obp.data
+BETWEEN '1997-01-01' AND '1997-06-30'
+AND const.cod_const = ob.cod_const
+AND ob.cod_obra = obp.cod_obra
+AND op_const.cod_const = ob.cod_const
+AND op_const.cart_trab = op.cart_trab
+AND const.nome_const != 'Encol'
+GROUP BY op.cart_trab, op.nomeop
