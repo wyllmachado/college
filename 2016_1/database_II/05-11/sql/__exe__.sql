@@ -7,9 +7,7 @@ Turma: ADS [Quarta/noite]
     1 – Criar uma view com o nome de cursosanalista, que contém o nome do curso, nome do
     analista e salário do analista com um aumento de 10%.
 */
-DROP VIEW cursoanalista;
-
-CREATE VIEW cursoanalista AS
+CREATE OR REPLACE VIEW cursoanalista AS
 	SELECT c.curso, a.analista, (a.salario + a.salario * 0.1)
 	FROM analista a
 	INNER JOIN curso c
@@ -27,29 +25,31 @@ SELECT * FROM cursoanalista;
 */
 CREATE OR REPLACE FUNCTION progCursor() RETURNS VOID AS $$
 	DECLARE
-		rr CURSOR FOR SELECT p.programador, p.idade FROM programador p;
-		progrowtype programador%ROWTYPE;
+		rec programador%ROWTYPE;
+		_cursor CURSOR FOR SELECT * FROM programador;		
 	BEGIN		
-		OPEN rr;
+		OPEN _cursor;
+
+		FETCH _cursor INTO rec;
 
 		LOOP
-			FETCH rr INTO progrowtype;
-			
-			IF rr.idade >= 20 AND rr.idade < 25 THEN
-				RAISE NOTICE 'str1';
-			ELSIF rr.idade >= 25 AND rr.idade < 36 THEN
-				RAISE NOTICE 'str2';
-			ELSIF rr.idade >= 36 THEN
-				RAISE NOTICE 'str3';
+			IF rec.idade >= 20 AND rec.idade < 25 THEN
+				RAISE NOTICE '%', rec.programador || ' possui 18 dias de férias';
+			ELSIF rec.idade >= 25 AND rec.idade < 36 THEN
+				RAISE NOTICE '%', rec.programador || ' possui 21 dias de férias';
+			ELSIF rec.idade >= 36 THEN
+				RAISE NOTICE '%', rec.programador || ' possui 25 dias de férias';
 			END IF;
 
-			EXIT WHEN rr%NOTFOUND;
+			FETCH _cursor INTO rec;
+
+			EXIT WHEN NOT FOUND;
 		END LOOP;
 
-		CLOSE rr;
+		CLOSE _cursor;
 		RETURN;
 	END;
-$$ LANGUAGE plpgsql;x	
+$$ LANGUAGE plpgsql;
 
 SELECT * FROM progCursor();
 
@@ -57,9 +57,7 @@ SELECT * FROM progCursor();
     3 – Criar uma view com o nome de ativanalista, contendo o nome do analista e a
     quantidade de atividades de análise que ele realizou.
 */
-DROP VIEW ativanalista;
- 
-CREATE VIEW ativanalista AS
+CREATE OR REPLACE VIEW ativanalista AS
     SELECT a.analista, COUNT(aa.codanalista)
 	FROM analista a
 	INNER JOIN atividadesanalise aa
@@ -76,8 +74,8 @@ SELECT * FROM ativanalista;
     2 atividades            10%
     3 atividades ou mais    15%
 */
-CREATE OR REPLACE FUNCTION ATUALIZA_SALARIO_TEMP_TABLE() RETURNS VOID AS
-$$
+CREATE OR REPLACE FUNCTION ATUALIZA_SALARIO_TEMP_TABLE()
+RETURNS VOID AS $$
 DECLARE
 	_CURSOR_ANALISTA REFCURSOR;
 	_codanalista FLOAT;
