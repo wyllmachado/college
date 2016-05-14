@@ -1,5 +1,0 @@
-*.php
-error_log
-.DS_Store
-node_modules/
-public/
