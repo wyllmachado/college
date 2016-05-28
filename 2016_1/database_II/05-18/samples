@@ -1,0 +1,31 @@
+﻿create function gera_log() returns trigger as
+$$
+	Begin
+	insert into log (data, autor, alteracao) values (now(), user, TG_OP);
+	return new;
+	end;
+$$ language 'plpgsql';
+
+create trigger tr_gera_log after insert or update or delete on alterada for each row execute
+procedure gera_log();
+
+select * from alterada
+select * from log
+
+update alterada set cod = 4 where cod = 10
+DELETE FROM alterada WHERE cod = 4;
+
+CREATE TABLE funcionarios (
+	ID_FUNCIONARIO SERIAL,
+	NOME VARCHAR(255),
+	IDADE INTEGER,
+	FUNCAO VARCHAR(150),
+	PRIMARY KEY(ID_FUNCIONARIO)
+);
+CREATE TABLE FUNCIONARIOS_LOG (
+	COD_ALTERACAO SERIAL,
+	USUARIO VARCHAR(150) NOT NULL,
+	TIPO_ACAO VARCHAR(25) NOT NULL,
+	DATA_ALTERACAO TIMESTAMP NOT NULL,
+	PRIMARY KEY (COD_ALTERACAO)
+);
