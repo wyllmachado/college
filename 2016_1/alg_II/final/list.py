@@ -1,65 +1,47 @@
 # coding: utf-8
 
 
-from elementList import ElementList
+from elementList import Node
 
 
 class LinkedList():
-    # CONSTRUCTOR
-    def __init__(self):
-        self.head = None
-        self.tail = None
-        self.temp = None
+    def __init__(self, r = None):
+        self.root = r
+        self.size = 0
 
-    
-    # METHODS
-    def append(self, label, value):
-        element = ElementList(label, value)
+    def get_size(self):
+        return self.size
 
-        if self.head == None:
-            self.head = element
-            self.tail = element
-            return
-        elif self.head.nextEl == None and self.tail.prevEl == None:
-            
-            return
+    def add(self, d):
+        new_node = Node(d, self.root)
+        if self.root:
+            self.root.set_prev(new_node)
+        self.root = new_node
+        self.size += 1
 
+    def remove(self, d):
+        this_node = self.root
+        while this_node:
+            if this_node.get_data()['label'] == d['label']:
+                nxt = this_node.get_next()
+                prv = this_node.get_prev()
+                if nxt:
+                    nxt.set_prev(prv)
+                if prv:
+                    prev.set_next(nxt)
+                else:
+                    self.root = this_node
+                self.size -= 1
+                return True
+            else:
+                self.root = this_node.get_next()
+        return False
 
-    def addAfter(self, label, value, after):
-        element = ElementList(label, value)
-
-        if self.head == None:
-            self.head = element
-            self.tail = element
-            return
-
-
-    def addBefore(self, label, value, before):
-        element = ElementList(label, value)
-        
-        if self.head == None:
-            self.head = element
-            self.tail = element
-            return
-
-
-    def remove(self, who):
-        return
-
- 
-    # GETTER
-    def getHead(self):
-        return self.head
-
-
-    def getTail(self):
-        return self.tail
-
-
-    def getElement(self, name):
-        return
-
-
-# if name == '__main__':
-#    return
-    
+    def find(self, d):
+        this_node = self.root
+        while this_node:
+            if this_node.get_data()['label'] == d['label']:
+                return this_node.get_data()
+            else:
+                this_node = this_node.get_next()
+        return None

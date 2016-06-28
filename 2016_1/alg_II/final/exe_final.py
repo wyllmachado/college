@@ -6,8 +6,38 @@ from list import LinkedList
 
 
 a = LinkedList()
-a.append('a1', 2)
+a.add({
+    'label': 'a1',
+    'value': '5'
+})
+a.add({
+    'label': 'a2',
+    'value': '8'
+})
+a.add({
+    'label': 'a3',
+    'value': '10'
+})
 
 
-print a.head.label
-print a.head.value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

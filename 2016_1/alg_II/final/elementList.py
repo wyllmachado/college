@@ -1,31 +1,27 @@
 # coding: utf-8
 
 
-class ElementList():
-    def __init__(self, label, value):
-        self.label = label
-        self.value = value
-        self.nextEl = None
-        self.prevEl = None
+class Node():
+    def __init__(self, d, n = None, p = None):
+        self.data = d
+        self.next_node = n
+        self.prev_node = p
     
+    def get_next(self):
+        return self.next_node 
 
-    def next(self):
-        if nextEl != None
-            return nextEl
-        else:
-            return None
+    def set_next(self, n):
+        self.next_node = n
 
+    def get_prev(self):
+        return self.prev_node
 
-    def prev(self):
-        return
+    def set_prev(self, p):
+        self.prev_node = p
 
-    
-    # GETTERS
+    def get_data(self):
+        return self.data
 
-
-    # SETTERS
-
-
-
-# if name == '__main__':
-#    return
+    def set_data(self, d):
+        self.data = d
+        
