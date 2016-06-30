@@ -12,15 +12,26 @@ class LinkedList():
     def get_size(self):
         return self.size
 
-    def add(self, d):
+    def addFirst(self, d):
         new_node = Node(d, self.root)
         if self.size == 0:
             self.head = new_node
             self.tail = new_node
         elif self.head.next_node == None and self.tail.prev_node == None:
+            self.head = new_node
+            self.head.set_next(self.tail)
+            self.tail.set_prev(self.head)
+        self.size += 1
+
+    def addLast(self, d):
+        new_node = Node(d, self.root)
+        if self.size == 0:
+            self.head = new_node
             self.tail = new_node
-            self.tail.prev_node = self.head
-            self.head.next_node = self.tail
+        elif self.head.get_next() == None and self.tail.get_prev() == None:
+            self.tail = new_node
+            self.tail.set_prev(self.head)
+            self.head.set_next(self.tail)
         else:
             self.root = self.tail
             self.tail = new_node

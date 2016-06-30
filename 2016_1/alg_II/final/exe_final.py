@@ -4,19 +4,20 @@
 from list import LinkedList
 
 a = LinkedList()
-a.add({
+b = LinkedList()
+
+
+
+
+a.addFirst({
     'label': 'a1',
     'value': '5'
 })
-a.add({
+a.addFirst({
     'label': 'a2',
     'value': '8'
 })
-a.add({
-    'label': 'a3',
-    'value': '10'
-})
 
-print a.find({'label': 'a1'}).get_data()
-a.remove({'label': 'a1'})
-print a.find({'label': 'a2'}).get_prev()
+findA1 = a.find({'label': 'a1'})
+print findA1.get_next()
+
