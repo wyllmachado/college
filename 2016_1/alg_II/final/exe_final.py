@@ -3,21 +3,35 @@
 
 from list import LinkedList
 
+userInputExpression = None
+userInputCel = None
 a = LinkedList()
 b = LinkedList()
-
-
 
 
 a.addFirst({
     'label': 'a1',
     'value': '5'
 })
-a.addFirst({
-    'label': 'a2',
-    'value': '8'
-})
 
-findA1 = a.find({'label': 'a1'})
-print findA1.get_next()
 
+
+'''
+while(True):
+    userInputCel = raw_input('Where do you want insert? \n')
+    userInputExpression = raw_input('Enter a math expression: \n')
+    result = None
+    if userInputCel[0].lower() == 'a':
+        print 'A cedule'
+        result = a.find({'label': userInputCel})
+        if result == None:
+            print 'not'
+        else:
+            print result.get_data()
+    elif userInputCel[0].lower() == 'b':
+        print 'B Cedule'
+
+    else:
+        print 'Invalid input _l_ \n'
+        break
+'''
