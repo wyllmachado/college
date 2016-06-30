@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
 from list import LinkedList
-
 
 a = LinkedList()
 a.add({
@@ -19,25 +17,6 @@ a.add({
     'value': '10'
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print a.find({'label': 'a1'}).get_data()
+a.remove({'label': 'a1'})
+print a.find({'label': 'a2'}).get_prev()

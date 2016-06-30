@@ -1,6 +1,5 @@
 # coding: utf-8
 
-
 class Node():
     def __init__(self, d, n = None, p = None):
         self.data = d
