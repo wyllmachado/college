@@ -19,7 +19,7 @@ ser em uma escada rolante e ter sido colado do lado errado, dando a impressão q
 pois o avião ficaria mais amigável subindo e não  com o seu bico quase no chão.
 
 
-![Erro na interpretação](./img/ads-airbus.jpg "Erro na interpretação")
+![Erro na interpretação](http://vidadeprogramador.com.br/wp-content/uploads/2011/03/tirinha25.png "Erro na interpretação")
 Outro caso que pode parecer piada mas por incrível que parece acontece.
 Essa imagem demonstra uma falha na comincação de um casal, acredito que isso ocorre por
 talvez uma pessoa ser mais focada em certo mundo. Isso poderia ter sido resolvido com um simples...
