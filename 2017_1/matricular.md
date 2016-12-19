@@ -1,0 +1,11 @@
+- segunda
+    - Ética, Cidadania e Sustentabilidade (EAD)     09:00 às 12:00      THIAGO STEIN MOTTA
+    - Sistemas Operacionais                         19:00 às 22:00      ANTONIO ROGERIO MACHADO RAMOS
+- terça
+    - [SEM AULA]
+- quarta
+    - Interface Homem Computador                    19:00 às 22:00      THIAGO STEIN MOTTA
+- quinta
+    - Sistemas Distribuídos                         19:00 às 22:00      INSTRUTOR A DEFINIR
+- sexta
+    - [SEM A AULA]
